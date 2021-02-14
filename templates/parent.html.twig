@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Projet Symfony</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    
+
+     {% block carte1 %}
+    {% endblock %}
 </head>
 <body>
 
@@ -29,6 +33,9 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, numquam in, mollitia culpa quia nostrum eius amet modi ipsam minus inventore assumenda eum ipsum voluptates, totam quibusdam similique consequatur expedita?</p>
             <img src="{{ asset('images/photo4.jpg') }}" alt="photo4">
              {% endblock %}
+
+             {% block carte2 %}
+            {% endblock %}
         </section>
     </main>
     <footer>

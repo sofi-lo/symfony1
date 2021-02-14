@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Newsletter;
+use App\Form\NewsletterType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 // ne pas oublier de rajouter les lignes use...
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Newsletter;
-use App\Form\NewsletterType;
+
 
 class SiteController extends AbstractController
 {

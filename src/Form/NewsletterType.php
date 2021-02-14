@@ -16,7 +16,7 @@ class NewsletterType extends AbstractType
             // on définit les champs du formulaire
             ->add('nom')
             ->add('email')
-//            ->add('dateInscription')
+        //    ->add('dateInscription')
         ;
     }
 
