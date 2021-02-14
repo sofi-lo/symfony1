@@ -10,23 +10,24 @@
 
     <header>
         <nav>
-            <a href="{{ path('index') }}">accueil</a>
-            <a href="{{ path('galerie') }}">galerie</a>
-            <a href="{{ path('contact') }}">contact</a>
+            <a href="{{ path('index') }}">Accueil</a>
+            <a href="{{ path('galerie') }}">Galerie</a>
+            <a href="{{ path('contact') }}">Contact</a>
+            <a href="{{ path('realisation') }}">Réalisations</a>
         </nav>
     </header>
     <main>
         <section>
         {% block titre1 %}
-            <h1>MON TITRE1</h1>
+            <h1>Bienvenue</h1>
             {% endblock %}
-            <h1>MON TITRE1</h1>
+            <h1> Sourire ❕❕❕</h1>
              {% block titre2 %}
-            <h1>Bienvenue </h1>
+            <h1>sur cette page</h1>
             {% endblock %}
              {% block titre3 %}
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, numquam in, mollitia culpa quia nostrum eius amet modi ipsam minus inventore assumenda eum ipsum voluptates, totam quibusdam similique consequatur expedita?</p>
-            <img src="{{ asset('images/photo1.jpg') }}" alt="photo1">
+            <img src="{{ asset('images/photo4.jpg') }}" alt="photo4">
              {% endblock %}
         </section>
     </main>

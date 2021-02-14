@@ -14,14 +14,39 @@ use Symfony\Component\Routing\Annotation\Route;
 class NewsletterController extends AbstractController
 {
 
+    #[Route('/', name: 'newsletter_index', methods: ['GET'])]
+    public function index(NewsletterRepository $newsletterRepository): Response
+    {
+        return $this->render('newsletter/index.html.twig', [
+            'newsletters' => $newsletterRepository->findAll(),
+        ]);
+    }
+
     #[Route('/new', name: 'newsletter_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
-        $newsletter = new Newsletter();
-        $form = $this->createForm(NewsletterType::class, $newsletter);
-        $form->handleRequest($request);
+        // $request est fourni par symfony
+        // $request permet de récupérer les infos de formulaire
 
+        $newsletter = new Newsletter(); // code créé avec le make:entity
+        // $newsletter est un objet qui va contenir les infos de formulaire
+        // on peut préremplir les valeurs
+        // https://www.php.net/manual/fr/class.datetime.php
+        // $newsletter->setNom("nom prérempli");
+        // attention: le pré-remplissage doit se faire avant createForm
+
+        $form = $this->createForm(NewsletterType::class, $newsletter);
+        // connecte le formulaire avec les infos reçues du navigateur
+        $form->handleRequest($request);
+        // si le formulaire est envoyé ET les infos sont correctes
         if ($form->isSubmitted() && $form->isValid()) {
+            // alors on traite le formulaire
+
+            // ici on peut compléter les infos manquantes
+            $objetDate = new \DateTime();   // objet qui contient la date actuelle
+            $newsletter->setDateInscription($objetDate);
+    
+            // on envoie les infos en base de données
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newsletter);
             $entityManager->flush();
@@ -35,6 +60,13 @@ class NewsletterController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'newsletter_show', methods: ['GET'])]
+    public function show(Newsletter $newsletter): Response
+    {
+        return $this->render('newsletter/show.html.twig', [
+            'newsletter' => $newsletter,
+        ]);
+    }
 
     #[Route('/{id}/edit', name: 'newsletter_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Newsletter $newsletter): Response
