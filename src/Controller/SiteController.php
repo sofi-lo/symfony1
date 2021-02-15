@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Controller;
-use App\Entity\Newsletter;
-use App\Form\NewsletterType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 // ne pas oublier de rajouter les lignes use...
 use Symfony\Component\HttpFoundation\Request;
-
+use App\Entity\Newsletter;
+use App\Form\NewsletterType;
 
 class SiteController extends AbstractController
 {
@@ -66,13 +64,14 @@ class SiteController extends AbstractController
         return $this->render('site/contact.html.twig', [
             'controller_name' => 'SiteController',
         ]);
-        }
-        #[Route('/realisations', name: 'realisation')]
-    public function realisation(): Response
-    {
-        return $this->render('site/realisation.html.twig', [
-            'controller_name' => 'SiteController',
-        ]);
-    }
+        // }
+        // #[Route('/realisations', name: 'realisation')]
+    // public function realisation(): Response
+    // {
+    //     return $this->render('site/realisation.html.twig', [
+    //         'controller_name' => 'SiteController',
+    //     ]);
+    // }
 
+}
 }
