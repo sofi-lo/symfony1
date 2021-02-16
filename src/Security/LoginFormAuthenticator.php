@@ -112,20 +112,19 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         // / IL FAUT RECUPERER L'UTILISATEUR CONNECTE
         // ET SUIVANT LE ROLE DE L'UTILISATEUR, ON LE REDIRIGE VERS L'ESPACE ADMIN OU MEMBRE
         // https://symfony.com/doc/current/security.html#b-fetching-the-user-from-a-service
-        $userConnecte = $this->security->getUser();
+        // $userConnecte = $this->security->getUser();
         // https://symfony.com/doc/current/security.html#hierarchical-roles
-        $isAdmin = in_array("ROLE_ADMIN", $userConnecte->getRoles());
+        // $isAdmin = in_array("ROLE_ADMIN", $userConnecte->getRoles());
 
         $nomRouteRedirection = "index";
-        if ($isAdmin) {
+        if ($this->security->isGranted("ROLE_ADMIN")) {
             // redirection vers la page /admin
             $nomRouteRedirection = "admin";
         }
-        elseif (in_array("ROLE_MEMBRE", $userConnecte->getRoles())) {
-            // redirection vers la page /admin
+        elseif ($this->security->isGranted("ROLE_USER")) {
+            // redirection vers la page /membre
             $nomRouteRedirection = "membre";
         }
-
         // For example : 
         // TODO: CHANGER LA REDIRECTION VERS UNE PAGE ESPACE MEMBRE
         // POUR LE MOMENT, ON REDIRIGE VERS LA PAGE D'ACCUEIL...
