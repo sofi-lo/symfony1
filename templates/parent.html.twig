@@ -14,11 +14,23 @@
 
     <header>
         <nav>
-            <a href="{{ path('index') }}">Accueil</a>
-            <a href="{{ path('galerie') }}">Galerie</a>
-            <a href="{{ path('contact') }}">Contact</a>
-            {# <a href="{{ path('realisation') }}">Réalisations</a> #}
+            <a href="{{ path('index') }}">accueil</a>
+            <a href="{{ path('galerie') }}">galerie</a>
+            <a href="{{ path('contact') }}">contact</a>
         </nav>
+        {% if app.user %}
+            <div class="mb-3">
+                Bienvenue {{ app.user.username }}, 
+                <a href="{{ path('admin') }}">admin</a>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+        {% else %}
+            <nav>
+                <a href="{{ path('app_register') }}">créez votre compte</a>
+                <a href="{{ path('app_login') }}">connexion</a>
+            </nav>
+        {% endif %}
+
     </header>
     <main>
         <section>
