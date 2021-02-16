@@ -10,7 +10,10 @@ use App\Entity\Newsletter;
 use App\Form\NewsletterType;
 
 class SiteController extends AbstractController
+
 {
+    // #[Route('/', name: 'index')]
+    // public function index(): Response
     #[Route('/', name: 'index', methods: ['GET', 'POST'])]
     public function index(Request $request): Response
     {
@@ -64,14 +67,14 @@ class SiteController extends AbstractController
         return $this->render('site/contact.html.twig', [
             'controller_name' => 'SiteController',
         ]);
-        // }
-        // #[Route('/realisations', name: 'realisation')]
-    // public function realisation(): Response
-    // {
-    //     return $this->render('site/realisation.html.twig', [
-    //         'controller_name' => 'SiteController',
-    //     ]);
-    // }
+        }
+        #[Route('/realisations', name: 'realisation')]
+    public function realisation(): Response
+    {
+        return $this->render('site/realisation.html.twig', [
+            'controller_name' => 'SiteController',
+        ]);
+    }
 
 }
-}
+
