@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Newsletter;
 use App\Form\NewsletterType;
 use App\Repository\AnnonceRepository;
+use App\Entity\Annonce;
+
 class SiteController extends AbstractController
 
 {
@@ -81,8 +83,18 @@ class SiteController extends AbstractController
         // https://symfony.com/doc/current/doctrine.html#fetching-objects-from-the-database
         // $annonces = $annonceRepository->findAll();   // TROP BASIQUE CAR TRIE PAR id CROISSANT
         $annonces = $annonceRepository->findBy([], [ "datePublication" => "DESC"]);
+
         return $this->render('site/annonces.html.twig', [
-            'annonces' => $annonceRepository->findAll(),    // SELECT * FROM annonces
+            'annonces' => $annonces,    // SELECT * FROM annonces
+        ]);
+    }
+
+    #[Route('/annonce/{slug}/{id}', name: 'annonce', methods: ['GET'])]
+    public function annonce(Annonce $annonce): Response
+    {
+        // méthode pour afficher une seule annonce
+        return $this->render('site/annonce.html.twig', [
+            'annonce' => $annonce,
         ]);
     }
 }
