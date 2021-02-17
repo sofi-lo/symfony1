@@ -13,12 +13,13 @@
                 <div>publié par {{ annonce.user.username }}</div>
                 <p>{{ annonce.contenu }}</p>
                 <div>{{ annonce.image }}</div>
-                <div>{{ annonce.datePublication ? annonce.datePublication|date('D-m-y H:i') : '' }}</div>
+                <div>{{ annonce.datePublication ? annonce.datePublication|date('d/m/Y à H:i') : '' }}</div>
             </article>
         {% else %}
             <article>
                 <div>aucune annonce n'est publiée</div>
             </article>
+                
         {% endfor %}
 
     </div>
